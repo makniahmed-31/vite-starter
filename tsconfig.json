@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["es2016"],
+    "lib": ["es2016", "dom"],
     "outDir": "bin",
+    "jsx": "react-jsx",
     "module": "esnext",
     "removeComments": true,
     "moduleResolution": "node",
     "strictNullChecks": true,
+    "noEmit": true, // If you only want to type check
+    "allowImportingTsExtensions": true, // Add this line
     "typeRoots": [
       "node_modules/@types/"
     ],
@@ -53,7 +56,7 @@
   },
   "include": [
     "**/*.ts"
-  ],
+, "src/index.tsx"  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

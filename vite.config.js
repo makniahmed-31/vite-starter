@@ -1,27 +1,28 @@
-import path, { dirname }  from 'path'
-import glob from 'glob'
-import { fileURLToPath } from 'url'
-import { defineConfig } from 'vite'
-import twig from 'vite-plugin-twig'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import viteImagemin from 'vite-plugin-imagemin'
+import path, { dirname } from 'path';
+import glob from 'glob';
+import { fileURLToPath } from 'url';
+import { defineConfig } from 'vite';
+import twig from 'vite-plugin-twig';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import viteImagemin from 'vite-plugin-imagemin';
+import react from '@vitejs/plugin-react'; // Import the React plugin
 
-import config from './config.js'
-import purgeCSSPlugin from './scripts/purgecss.js'
-import criticalPlugin from './scripts/critical.js'
-import dynamicImportPlugin from './scripts/dynamicImport.js'
-import htmlMinifierPlugin from './scripts/htmlMinifier.js'
+import config from './config.js';
+import purgeCSSPlugin from './scripts/purgecss.js';
+import criticalPlugin from './scripts/critical.js';
+import dynamicImportPlugin from './scripts/dynamicImport.js';
+import htmlMinifierPlugin from './scripts/htmlMinifier.js';
 
-import { createRequire } from 'module'
-const require = createRequire(import.meta.url)
-const file = fileURLToPath(import.meta.url)
-const dir = dirname(file)
-const { rootDir, buildDir, server, imagemin } = config
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const file = fileURLToPath(import.meta.url);
+const dir = dirname(file);
+const { rootDir, buildDir, server, imagemin } = config;
 
 // JSON data
-const en = require(`./${rootDir}/data/en.json`)
+const en = require(`./${rootDir}/data/en.json`);
 
-export default defineConfig ({
+export default defineConfig({
   server: {
     ...server,
   },
@@ -51,5 +52,6 @@ export default defineConfig ({
     purgeCSSPlugin(),
     criticalPlugin(),
     htmlMinifierPlugin(),
+    react() // Add the React plugin here
   ],
-})
+});
